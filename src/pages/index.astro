@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RecipeNav from '../components/RecipeNav.astro';
+import { sections } from '../lib/sections';
+import { getRecipeData, getSortedRecipes } from '../lib/recipes';
+
+const { recipeMap, sectionRecipes } = getRecipeData();
+const sorted = getSortedRecipes(recipeMap);
+const firstRecipe = sorted[0] ?? null;
+
+// Sections to show in the grid (exclude vocabulaire from recipe count display)
+const recipeSections = sections.filter((s) => s.recipeRange !== null);
+const vocabSection   = sections.find((s) => s.slug === 'vocabulaire')!;
+
+function sectionRecipeCount(slug: string): number {
+  return sectionRecipes.get(slug)?.length ?? 0;
+}
+---
+
+<BaseLayout title="Home">
+  <main class="page">
+    <section class="hero">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Hachette · Civilisation · 1976</p>
+        <h1 class="hero__title">Cuisine Facile<br>en Français Facile</h1>
+        <p class="hero__subtitle lang-en">Easy Cooking in Easy French</p>
+        <p class="hero__meta">
+          {recipeMap.size} recipes · {recipeSections.length} sections · illustrations by Andrée Marquet
+        </p>
+      </div>
+      <div class="hero__illustration" aria-hidden="true">
+        <span>Illustration placeholder</span>
+      </div>
+    </section>
+
+    <div class="section-grid" style="margin-bottom:0">
+      <!-- Vocabulaire card -->
+      <a href="/vocabulaire" class="section-card">
+        <div class="section-card__range">Reference</div>
+        <div class="section-card__title-fr">{vocabSection.titleFr}</div>
+        <div class="section-card__title-en lang-en">{vocabSection.titleEn}</div>
+        <div class="section-card__count">Equipment &amp; cooking terms</div>
+      </a>
+
+      <!-- Recipe sections -->
+      {recipeSections.map((section) => {
+        const count = sectionRecipeCount(section.slug);
+        const [start, end] = section.recipeRange ?? [0, 0];
+        return (
+          <a href={`/${section.slug}`} class="section-card">
+            <div class="section-card__range">N° {start}–{end}</div>
+            <div class="section-card__title-fr">{section.titleFr}</div>
+            <div class="section-card__title-en lang-en">{section.titleEn}</div>
+            <div class="section-card__count">{count} recipe{count !== 1 ? 's' : ''}</div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Book-style browse navigation -->
+    {firstRecipe && (
+      <div style="padding: 32px 0;">
+        <RecipeNav prev={null} next={firstRecipe} />
+      </div>
+    )}
+  </main>
+</BaseLayout>

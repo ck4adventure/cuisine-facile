@@ -1,0 +1,70 @@
+---
+interface Props {
+  backUrl?: string;
+  backLabel?: string;
+}
+const { backUrl, backLabel = 'Back' } = Astro.props;
+---
+
+<header class="site-header">
+  {backUrl ? (
+    <a href={backUrl} class="site-header__back">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 2L4 7l5 5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      {backLabel}
+    </a>
+  ) : (
+    <span style="width:52px;flex-shrink:0"></span>
+  )}
+
+  <div class="site-header__title">
+    <a href="/">Cuisine Facile en Français Facile</a>
+  </div>
+
+  <div class="site-header__controls">
+    <button class="lang-btn" data-lang-btn="fr"   aria-label="French only">FR</button>
+    <button class="lang-btn" data-lang-btn="both" aria-label="French and English">FR+EN</button>
+    <button class="lang-btn" data-lang-btn="en"   aria-label="English only">EN</button>
+    <span class="header-divider"></span>
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode">◑</button>
+  </div>
+</header>
+
+<script>
+  // Apply saved state immediately (also handled inline in BaseLayout to prevent flash)
+  const html = document.documentElement;
+
+  // ── Language toggle ──
+  function setLang(lang: string) {
+    html.dataset.lang = lang;
+    localStorage.setItem('facile-lang', lang);
+    document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.langBtn === lang);
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => setLang(btn.dataset.langBtn!));
+  });
+
+  // Sync button state on load
+  setLang(localStorage.getItem('facile-lang') ?? 'both');
+
+  // ── Dark mode toggle ──
+  function setTheme(theme: string) {
+    html.dataset.theme = theme;
+    localStorage.setItem('facile-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = theme === 'dark' ? '○' : '◑';
+  }
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    setTheme(html.dataset.theme === 'dark' ? 'light' : 'dark');
+  });
+
+  // Sync theme button icon on load
+  const savedTheme = localStorage.getItem('facile-theme') ?? 'light';
+  const themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) themeBtn.textContent = savedTheme === 'dark' ? '○' : '◑';
+</script>

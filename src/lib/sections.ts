@@ -71,20 +71,20 @@ export const sections: Section[] = [
     filePath: '10_lapin_volaille.md',
     titleFr: 'Le Lapin & La Volaille',
     titleEn: 'Rabbit & Poultry',
-    recipeRange: null,
+    recipeRange: [111, 132],
   },
   {
     slug: 'legumes',
     filePath: '11_legumes.md',
     titleFr: 'Les Légumes',
     titleEn: 'Vegetables',
-    recipeRange: null,
+    recipeRange: [133, 154],
   },
   {
     slug: 'desserts',
     filePath: '12_desserts.md',
     titleFr: 'Les Desserts',
     titleEn: 'Desserts',
-    recipeRange: null,
+    recipeRange: [155, 198],
   },
 ];

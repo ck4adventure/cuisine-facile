@@ -1,0 +1,34 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  backUrl?: string;
+  backLabel?: string;
+}
+const { title, backUrl, backLabel } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" data-lang="both" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cuisine Facile en Français Facile — a bilingual digital edition of the 1976 Hachette cookbook." />
+    <title>{title} — Cuisine Facile en Français Facile</title>
+    <!-- Anti-flash: apply persisted theme + lang before first paint -->
+    <script is:inline>
+      (function () {
+        const t = localStorage.getItem('facile-theme') || 'light';
+        const l = localStorage.getItem('facile-lang')  || 'both';
+        document.documentElement.dataset.theme = t;
+        document.documentElement.dataset.lang  = l;
+      })();
+    </script>
+  </head>
+  <body>
+    <SiteHeader backUrl={backUrl} backLabel={backLabel} />
+    <slot />
+  </body>
+</html>

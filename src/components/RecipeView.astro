@@ -1,0 +1,146 @@
+---
+import type { Recipe, RecipeMap } from '../lib/recipes';
+import { linkifyBody } from '../lib/links';
+
+interface Props {
+  recipe: Recipe;
+  recipeMap: RecipeMap;
+}
+const { recipe, recipeMap } = Astro.props;
+
+function renderSteps(bodyText: string, lang: 'fr' | 'en'): string[] {
+  const linked = linkifyBody(bodyText, recipeMap, lang);
+  return linked.split('•').map((s) => s.trim()).filter(Boolean);
+}
+
+const frSteps = renderSteps(recipe.bodyFr, 'fr');
+const enSteps = renderSteps(recipe.bodyEn, 'en');
+---
+
+<article>
+  <div class="recipe-num">N° {recipe.numDisplay}</div>
+
+  <h1 class="recipe-title">
+    <span class="lang-fr">{recipe.titleFr}</span>
+    <span class="recipe-title__en lang-en">{recipe.titleEn}</span>
+  </h1>
+
+  <!-- French block -->
+  <div class="recipe-block recipe-block--fr lang-fr">
+    <div class="recipe-block__label">Français</div>
+    <div class="recipe-block__body">
+      {frSteps.map((step) => (
+        <span class="step" set:html={step} />
+      ))}
+    </div>
+  </div>
+
+  <!-- English block -->
+  <div class="recipe-block recipe-block--en lang-en">
+    <div class="recipe-block__label">English</div>
+    <div class="recipe-block__body">
+      {enSteps.map((step) => (
+        <span class="step" set:html={step} />
+      ))}
+    </div>
+  </div>
+
+  {recipe.captionFr && (
+    <p class="recipe-caption lang-fr">{recipe.captionFr}</p>
+  )}
+  {recipe.captionEn && (
+    <p class="recipe-caption lang-en">{recipe.captionEn}</p>
+  )}
+</article>
+
+<script>
+  // ── Reference panel / inline expansion ──
+  const isMobile = () => window.innerWidth < 768;
+
+  document.querySelectorAll<HTMLAnchorElement>('a.recipe-ref').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const raw = link.dataset.recipe;
+      if (!raw) return;
+      e.preventDefault();
+
+      const recipe = JSON.parse(decodeURIComponent(raw));
+      if (!isMobile()) {
+        populateRefPanel(recipe);
+      } else {
+        toggleInlineRef(link, recipe);
+      }
+    });
+  });
+
+  function buildStepSpans(body: string): DocumentFragment {
+    const frag = document.createDocumentFragment();
+    body.split('•').map((s) => s.trim()).filter(Boolean).forEach((stepText) => {
+      const span = document.createElement('span');
+      span.className = 'step';
+      span.textContent = stepText;
+      frag.appendChild(span);
+    });
+    return frag;
+  }
+
+  function populateRefPanel(recipe: any) {
+    const panel = document.getElementById('ref-panel');
+    if (!panel) return;
+    const empty = panel.querySelector<HTMLElement>('.ref-panel__empty');
+    const card  = panel.querySelector<HTMLElement>('.ref-card');
+    if (!empty || !card) return;
+
+    const lang  = document.documentElement.dataset.lang ?? 'both';
+    const title = lang === 'en' ? recipe.titleEn : recipe.titleFr;
+    const body  = lang === 'en' ? recipe.bodyEn  : recipe.bodyFr;
+
+    const numEl   = card.querySelector('.ref-card__num');
+    const titleEl = card.querySelector('.ref-card__title');
+    const bodyEl  = card.querySelector('.ref-card__body');
+    if (!numEl || !titleEl || !bodyEl) return;
+
+    numEl.textContent   = `N° ${recipe.numDisplay}`;
+    titleEl.textContent = title;
+    bodyEl.replaceChildren(buildStepSpans(body));
+
+    empty.style.display = 'none';
+    card.classList.add('visible');
+  }
+
+  function toggleInlineRef(link: HTMLAnchorElement, recipe: any) {
+    const step = link.closest('.step');
+    if (!step) return;
+
+    const linkHref = link.getAttribute('href') ?? link.dataset.recipe ?? '';
+
+    // Collapse any other open inline refs
+    document.querySelectorAll<HTMLElement>('.inline-ref.expanded').forEach((el) => {
+      if (el.dataset.forLink !== linkHref) el.classList.remove('expanded');
+    });
+
+    // Reuse or create the inline-ref element for this link
+    let refEl = step.parentElement?.querySelector<HTMLElement>(
+      `.inline-ref[data-for-link="${CSS.escape(linkHref)}"]`
+    );
+
+    if (!refEl) {
+      const lang  = document.documentElement.dataset.lang ?? 'both';
+      const title = lang === 'en' ? recipe.titleEn : recipe.titleFr;
+      const body  = lang === 'en' ? recipe.bodyEn  : recipe.bodyFr;
+
+      refEl = document.createElement('span');
+      refEl.className = 'inline-ref';
+      refEl.dataset.forLink = linkHref;
+
+      const titleEl = document.createElement('strong');
+      titleEl.className = 'inline-ref__title';
+      titleEl.textContent = `N° ${recipe.numDisplay} · ${title}`;
+
+      refEl.appendChild(titleEl);
+      refEl.appendChild(buildStepSpans(body));
+      step.after(refEl);
+    }
+
+    refEl.classList.toggle('expanded');
+  }
+</script>

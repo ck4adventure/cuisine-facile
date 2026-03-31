@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecipeView from '../../components/RecipeView.astro';
+import RefPanel from '../../components/RefPanel.astro';
+import RecipeNav from '../../components/RecipeNav.astro';
+import { sections } from '../../lib/sections';
+import { getRecipeData, getAdjacentRecipes } from '../../lib/recipes';
+
+export async function getStaticPaths() {
+  const { sectionRecipes } = getRecipeData();
+  const paths: { params: { section: string; recipe: string }; props: { recipeNum: number } }[] = [];
+
+  for (const [sectionSlug, recipes] of sectionRecipes) {
+    for (const recipe of recipes) {
+      paths.push({
+        params: { section: sectionSlug, recipe: recipe.slug },
+        props:  { recipeNum: recipe.num },
+      });
+    }
+  }
+  return paths;
+}
+
+const { section: sectionSlug } = Astro.params;
+const { recipeNum } = Astro.props;
+
+const { recipeMap } = getRecipeData();
+const recipe = recipeMap.get(recipeNum)!;
+const sectionMeta = sections.find((s) => s.slug === sectionSlug)!;
+const { prev, next } = getAdjacentRecipes(recipeNum, recipeMap);
+
+const pageTitle = `N° ${recipe.numDisplay} · ${recipe.titleFr}`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  backUrl={`/${sectionSlug}`}
+  backLabel={sectionMeta.titleFr}
+>
+  <div class="recipe-layout">
+    <div class="recipe-pane">
+      <nav class="recipe-breadcrumb" aria-label="Breadcrumb">
+        <a href={`/${sectionSlug}`}>{sectionMeta.titleFr}</a>
+      </nav>
+
+      <RecipeView recipe={recipe} recipeMap={recipeMap} />
+      <RecipeNav prev={prev} next={next} />
+    </div>
+
+    <RefPanel />
+  </div>
+</BaseLayout>

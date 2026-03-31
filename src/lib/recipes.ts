@@ -172,12 +172,20 @@ function parseFile(
     }
 
     // Check for a recipe heading: ## No. X — title or ## No. X & Y — title
-    const recipeHeadMatch = trimmed.match(/^##\s+No\.\s+(\d+)(?:\s*&\s*(\d+))?\s*[—-]\s*(.+?)$/m);
+    // Also handle sub-recipe blocks: **No. X — title** (dual-recipe continuation after ---)
+    const recipeHeadMatch =
+      trimmed.match(/^##\s+No\.\s+(\d+)(?:\s*&\s*(\d+))?\s*[—-]\s*(.+?)$/m) ??
+      trimmed.match(/^\*\*No\.\s+(\d+)\s*[—-]\s*(.+?)\*\*$/m);
     if (!recipeHeadMatch) continue;
 
+    // Normalise: group 1 = num, group 2 = optional second num (only for ## form), group 3 = title
+    // For **No. X — title** form, there is no second num — shift groups to match
+    const isBoldForm = trimmed.startsWith('**No.');
     const num1 = parseInt(recipeHeadMatch[1], 10);
-    const num2 = recipeHeadMatch[2] ? parseInt(recipeHeadMatch[2], 10) : null;
-    const headingTitle = recipeHeadMatch[3].trim();
+    const num2 = !isBoldForm && recipeHeadMatch[2] ? parseInt(recipeHeadMatch[2], 10) : null;
+    // title is in group 3 for ## form, group 2 for ** form
+    const rawTitle = isBoldForm ? recipeHeadMatch[2] : recipeHeadMatch[3];
+    const headingTitle = rawTitle?.trim() ?? '';
 
     // Parse dual-recipe heading (e.g. No. 93 & 94)
     if (num2 !== null) {
@@ -259,6 +267,24 @@ export function buildRecipeData(): { recipeMap: RecipeMap; sectionRecipes: Secti
   }
 
   return { recipeMap, sectionRecipes };
+}
+
+/** Return prev/next recipes in book order for a given recipe number */
+export function getAdjacentRecipes(
+  num: number,
+  recipeMap: RecipeMap
+): { prev: Recipe | null; next: Recipe | null } {
+  const sorted = Array.from(recipeMap.values()).sort((a, b) => a.num - b.num);
+  const idx = sorted.findIndex((r) => r.num === num);
+  return {
+    prev: idx > 0 ? sorted[idx - 1] : null,
+    next: idx < sorted.length - 1 ? sorted[idx + 1] : null,
+  };
+}
+
+/** Return all recipes sorted by recipe number */
+export function getSortedRecipes(recipeMap: RecipeMap): Recipe[] {
+  return Array.from(recipeMap.values()).sort((a, b) => a.num - b.num);
 }
 
 // Singleton — built once at module load time

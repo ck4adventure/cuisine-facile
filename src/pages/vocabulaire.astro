@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getVocabData } from '../lib/vocabulaire';
+
+const { equipment, terms } = getVocabData();
+---
+
+<BaseLayout title="Le Vocabulaire de la Cuisine" backUrl="/" backLabel="Home">
+  <main class="page">
+    <header class="section-header">
+      <div class="section-header__num">Reference</div>
+      <h1 class="section-header__title-fr">Le Vocabulaire de la Cuisine</h1>
+      <p class="section-header__title-en lang-en">Kitchen Vocabulary</p>
+    </header>
+
+    <!-- Self-quiz hint — shown only in FR-only or EN-only mode -->
+    <div class="quiz-hint" aria-live="polite">
+      <span class="quiz-hint-fr lang-fr">FR only — definitions hidden. Try to recall the English before toggling.</span>
+      <span class="quiz-hint-en lang-en">EN only — French terms hidden. Try to recall the French before toggling.</span>
+    </div>
+
+    <!-- Ustensiles -->
+    <section class="vocab-section">
+      <h2 class="vocab-section__title">
+        <span class="lang-fr">Ustensiles de cuisine</span>
+        <span class="lang-en">Kitchen Equipment</span>
+      </h2>
+      <table class="vocab-table" aria-label="Kitchen equipment">
+        <thead>
+          <tr>
+            <th class="vocab-col-fr">Terme</th>
+            <th class="vocab-col-en">Term / EN</th>
+          </tr>
+        </thead>
+        <tbody>
+          {equipment.map((item) => (
+            <tr>
+              <td class="vocab-col-fr">{item.fr}</td>
+              <td class="vocab-col-en">{item.en}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Termes de cuisine -->
+    <section class="vocab-section">
+      <h2 class="vocab-section__title">
+        <span class="lang-fr">Termes de cuisine</span>
+        <span class="lang-en">Cooking Terms</span>
+      </h2>
+      <table class="vocab-table" aria-label="Cooking terms">
+        <thead>
+          <tr>
+            <th class="vocab-col-fr">Terme / FR</th>
+            <th class="vocab-col-en">Définition / EN</th>
+          </tr>
+        </thead>
+        <tbody>
+          {terms.map((item) => (
+            <tr>
+              <td class="vocab-col-fr">
+                <span class="vocab-term-fr">{item.fr}</span>
+                <span class="vocab-def-fr"> : {item.defFr}</span>
+              </td>
+              <td class="vocab-col-en">
+                <span class="vocab-term-fr">{item.en}</span>
+                <span class="vocab-def-fr"> : {item.defEn}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import type { Recipe } from '../lib/recipes';
+
+interface Props {
+  prev: Recipe | null;
+  next: Recipe | null;
+}
+const { prev, next } = Astro.props;
+---
+
+<nav class="recipe-nav" aria-label="Recipe navigation">
+  {prev ? (
+    <a href={`/${prev.section}/${prev.slug}`} class="recipe-nav__btn recipe-nav__btn--prev">
+      <span class="recipe-nav__dir">← Previous</span>
+      <span class="recipe-nav__title lang-fr">{prev.titleFr}</span>
+      <span class="recipe-nav__title lang-en">{prev.titleEn}</span>
+      <span class="recipe-nav__num">N° {prev.num}</span>
+    </a>
+  ) : (
+    <a href="/" class="recipe-nav__btn recipe-nav__btn--prev">
+      <span class="recipe-nav__dir">← Home</span>
+      <span class="recipe-nav__title">Cuisine Facile</span>
+    </a>
+  )}
+
+  {next ? (
+    <a href={`/${next.section}/${next.slug}`} class="recipe-nav__btn recipe-nav__btn--next">
+      <span class="recipe-nav__dir">Next →</span>
+      <span class="recipe-nav__title lang-fr">{next.titleFr}</span>
+      <span class="recipe-nav__title lang-en">{next.titleEn}</span>
+      <span class="recipe-nav__num">N° {next.num}</span>
+    </a>
+  ) : (
+    <a href="/" class="recipe-nav__btn recipe-nav__btn--next recipe-nav__btn--disabled">
+      <span class="recipe-nav__dir">End of book</span>
+    </a>
+  )}
+</nav>

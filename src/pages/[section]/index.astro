@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sections } from '../../lib/sections';
+import { getRecipeData } from '../../lib/recipes';
+import { resolveRecipeUrl } from '../../lib/links';
+import type { Recipe } from '../../lib/recipes';
+
+export async function getStaticPaths() {
+  return sections
+    .filter((s) => s.recipeRange !== null)
+    .map((s) => ({ params: { section: s.slug } }));
+}
+
+const { section: sectionSlug } = Astro.params;
+const sectionMeta = sections.find((s) => s.slug === sectionSlug)!;
+const { recipeMap, sectionRecipes } = getRecipeData();
+const recipes = sectionRecipes.get(sectionSlug) ?? [];
+
+// Build grouped list: [ { label?: string, items: Recipe[] } ]
+type Group = { label?: string; items: Recipe[] };
+const groups: Group[] = [];
+let currentGroup: Group = { items: [] };
+
+for (const recipe of recipes) {
+  if (recipe.group && recipe.group !== currentGroup.label) {
+    if (currentGroup.items.length > 0 || currentGroup.label) {
+      groups.push(currentGroup);
+    }
+    currentGroup = { label: recipe.group, items: [] };
+  }
+  currentGroup.items.push(recipe);
+}
+if (currentGroup.items.length > 0) groups.push(currentGroup);
+
+const [rangeStart, rangeEnd] = sectionMeta.recipeRange ?? [0, 0];
+---
+
+<BaseLayout
+  title={sectionMeta.titleFr}
+  backUrl="/"
+  backLabel="Home"
+>
+  <main class="page">
+    <header class="section-header">
+      <div class="section-header__num">N° {rangeStart}–{rangeEnd}</div>
+      <h1 class="section-header__title-fr">{sectionMeta.titleFr}</h1>
+      {sectionMeta.titleEn && (
+        <p class="section-header__title-en lang-en">{sectionMeta.titleEn}</p>
+      )}
+      <p class="section-header__range">
+        {recipes.length} recipe{recipes.length !== 1 ? 's' : ''}
+      </p>
+      {sectionMeta.description && (
+        <blockquote class="section-header__desc">{sectionMeta.description}</blockquote>
+      )}
+    </header>
+
+    <ol class="recipe-list" start={rangeStart}>
+      {groups.map((group) => (
+        <>
+          {group.label && (
+            <li class="recipe-group-label" aria-label={`Group: ${group.label}`}>
+              {group.label}
+            </li>
+          )}
+          {group.items.map((recipe) => {
+            const depNums = recipe.depends;
+            return (
+              <li>
+                <a href={`/${sectionSlug}/${recipe.slug}`} class="recipe-list-item">
+                  <span class="recipe-list-item__num">{recipe.numDisplay}</span>
+                  <span class="recipe-list-item__titles">
+                    <span class="recipe-list-item__title-fr">{recipe.titleFr}</span>
+                    <span class="recipe-list-item__title-en lang-en">{recipe.titleEn}</span>
+                  </span>
+                  <span class="recipe-list-item__meta">
+                    {depNums.map((n) => {
+                      const ref = recipeMap.get(n);
+                      return ref ? (
+                        <span class="dep-badge lang-en">builds on N° {n}</span>
+                      ) : null;
+                    })}
+                    <span class="recipe-list-item__arrow" aria-hidden="true">→</span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </>
+      ))}
+    </ol>
+  </main>
+</BaseLayout>
