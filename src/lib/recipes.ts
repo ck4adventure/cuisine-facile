@@ -41,11 +41,13 @@ function slugify(title: string): string {
     .replace(/\s+/g, '-');
 }
 
-/** Extract all (N° X) and (No. X) reference numbers from text */
+/** Extract all (N° X) and (No. X) reference numbers from text.
+ * Handles variants like (voir N° 31) and (roux, N° 8) by matching
+ * N° or No. anywhere within a parenthesized expression. */
 function extractDepends(frText: string, enText: string): number[] {
   const nums = new Set<number>();
-  const frMatches = frText.matchAll(/\(N°\s*(\d+)\)/g);
-  const enMatches = enText.matchAll(/\(No\.\s*(\d+)\)/g);
+  const frMatches = frText.matchAll(/\([^)]*N°\s*(\d+)[^)]*\)/g);
+  const enMatches = enText.matchAll(/\([^)]*No\.\s*(\d+)[^)]*\)/g);
   for (const m of frMatches) nums.add(parseInt(m[1], 10));
   for (const m of enMatches) nums.add(parseInt(m[1], 10));
   return Array.from(nums).sort((a, b) => a - b);

@@ -125,10 +125,10 @@ Prepare a béchamel sauce (No. 3) • when the sauce is cold, add three egg yolk
 ## No. 144 — Soufflé aux épinards au jambon (Spinach and Ham Soufflé)
 
 **French:**
-Préparer comme le soufflé aux épinards • ajouter à la sauce du jambon haché très fin.
+Préparer comme le soufflé aux épinards (N° 143) • ajouter à la sauce du jambon haché très fin.
 
 **English:**
-Prepare as for the spinach soufflé • add very finely chopped ham to the sauce.
+Prepare as for the spinach soufflé (No. 143) • add very finely chopped ham to the sauce.
 
 ---
 

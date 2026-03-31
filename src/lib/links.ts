@@ -20,11 +20,13 @@ export function linkifyBody(
   recipeMap: RecipeMap,
   lang: 'fr' | 'en'
 ): string {
+  // Match N° or No. anywhere inside a parenthesized expression.
+  // Capture groups: pre = text before N°/No., ref = "N° X" or "No. X", post = text after
   const pattern = lang === 'fr'
-    ? /\(N°\s*(\d+)\)/g
-    : /\(No\.\s*(\d+)\)/g;
+    ? /\(([^)]*)(N°\s*(\d+))([^)]*)\)/g
+    : /\(([^)]*)(No\.\s*(\d+))([^)]*)\)/g;
 
-  return text.replace(pattern, (match, numStr) => {
+  return text.replace(pattern, (match, pre, ref, numStr, post) => {
     const num = parseInt(numStr, 10);
     const url = resolveRecipeUrl(num, recipeMap);
     const recipe = recipeMap.get(num);
@@ -32,6 +34,6 @@ export function linkifyBody(
       ? ` data-recipe="${encodeURIComponent(JSON.stringify(recipe))}"`
       : '';
     const href = url ?? '#';
-    return `<a href="${href}" class="recipe-ref"${dataAttr}>${match}</a>`;
+    return `(${pre}<a href="${href}" class="recipe-ref"${dataAttr}>${ref}</a>${post})`;
   });
 }

@@ -105,10 +105,10 @@ Cook the coley in a court-bouillon (No. 46) • drain • remove the skin and bo
 ## No. 48 — Colin à la provençale (Coley Provençal-style)
 
 **French:**
-Préparer comme le cabillaud à la provençale N° 44.
+Préparer comme le cabillaud à la provençale (N° 44).
 
 **English:**
-Prepare like cod Provençal-style No. 44.
+Prepare like cod Provençal-style (No. 44).
 
 ---
 

@@ -63,10 +63,10 @@ Mix a glass of cream with fifteen tablespoons of flour • add two tablespoons o
 ## No. 160 — Brioche fourrée (Filled Brioche)
 
 **French:**
-Préparer une brioche • faire un trou dans la brioche froide • remplir le trou avec un mélange de confiture d'abricots et d'amandes grillées • mettre au four quelques minutes.
+Préparer une brioche (N° 159) • faire un trou dans la brioche froide • remplir le trou avec un mélange de confiture d'abricots et d'amandes grillées • mettre au four quelques minutes.
 
 **English:**
-Prepare a brioche • make a hole in the cold brioche • fill the hole with a mixture of apricot jam and grilled almonds • place in the oven for a few minutes.
+Prepare a brioche (No. 159) • make a hole in the cold brioche • fill the hole with a mixture of apricot jam and grilled almonds • place in the oven for a few minutes.
 
 ---
 
@@ -221,10 +221,10 @@ Wash and drain the strawberries well • place them in sweetened champagne • r
 ## No. 175 — Fraises en charlotte (Strawberry Charlotte)
 
 **French:**
-Tremper rapidement les biscuits (gâteaux secs, boudoirs, biscuits à la cuillère) dans un mélange d'eau et d'alcool • mettre les biscuits dans le fond et sur les côtés d'un plat • remplir le milieu du plat avec des fraises lavées, égouttées et sucrées • recouvrir avec des biscuits trempés • laisser au réfrigérateur • on peut napper avec une crème anglaise froide.
+Tremper rapidement les biscuits (gâteaux secs, boudoirs, biscuits à la cuillère) dans un mélange d'eau et d'alcool • mettre les biscuits dans le fond et sur les côtés d'un plat • remplir le milieu du plat avec des fraises lavées, égouttées et sucrées • recouvrir avec des biscuits trempés • laisser au réfrigérateur • on peut napper avec une crème anglaise froide (N° 161).
 
 **English:**
-Quickly dip the biscuits (sponge biscuits, sponge fingers, ladyfingers) in a mixture of water and alcohol • place the biscuits in the bottom and up the sides of a dish • fill the middle of the dish with washed, drained and sweetened strawberries • cover with soaked biscuits • refrigerate • you can coat with cold custard.
+Quickly dip the biscuits (sponge biscuits, sponge fingers, ladyfingers) in a mixture of water and alcohol • place the biscuits in the bottom and up the sides of a dish • fill the middle of the dish with washed, drained and sweetened strawberries • cover with soaked biscuits • refrigerate • you can coat with cold custard (No. 161).
 
 ---
 
@@ -377,10 +377,10 @@ Prepare a chocolate sauce (No. 165) • take large tinned pears (keep the tin in
 ## No. 190 — Pommes en charlotte (Apple Charlotte)
 
 **French:**
-Mettre les tranches de pain beurré dans le fond et les côtés d'une cocotte allant au four • remplir la cocotte avec des pommes coupées en morceaux et sucrées • ajouter des morceaux de pain beurré et sucré sur les pommes • laisser cuire très doucement une heure et quart • renverser le gâteau sur un plat • on peut napper le gâteau avec une crème anglaise froide.
+Mettre les tranches de pain beurré dans le fond et les côtés d'une cocotte allant au four • remplir la cocotte avec des pommes coupées en morceaux et sucrées • ajouter des morceaux de pain beurré et sucré sur les pommes • laisser cuire très doucement une heure et quart • renverser le gâteau sur un plat • on peut napper le gâteau avec une crème anglaise froide (N° 161).
 
 **English:**
-Place buttered slices of bread in the bottom and up the sides of a casserole dish • fill the casserole with sweetened apple pieces • add buttered and sweetened bread pieces over the apples • cook very gently for one hour and a quarter • turn the cake out onto a dish • you can coat with cold custard.
+Place buttered slices of bread in the bottom and up the sides of a casserole dish • fill the casserole with sweetened apple pieces • add buttered and sweetened bread pieces over the apples • cook very gently for one hour and a quarter • turn the cake out onto a dish • you can coat with cold custard (No. 161).
 
 ---
 
@@ -442,17 +442,17 @@ Mix ten tablespoons of flour well with three tablespoons of butter, a little sal
 Bien mélanger un œuf battu dans trois cuillères à soupe de farine et cinq cuillères d'eau • ajouter trois cuillères à soupe de beurre, quatre cuillères à soupe de sucre, un peu de sel • faire une boule avec la pâte • étendre la pâte avec un rouleau (dessin page 4) • bien relever la pâte sur le côté de la tourtière • étendre de la confiture • poser les fruits (en boîte ou frais) sur la confiture (voir recette N° 195) • sucrer • faire cuire au four quinze à vingt minutes.
 
 **English:**
-Mix a beaten egg well with three tablespoons of flour and five tablespoons of water • add three tablespoons of butter, four tablespoons of sugar and a little salt • form the dough into a ball • roll out the dough with a rolling pin (illustration page 4) • press the dough up the sides of the tart tin • spread jam • place the fruit (tinned or fresh) over the jam (see recipe No. 195) • sweeten • bake in the oven for fifteen to twenty minutes.
+Mix a beaten egg well with three tablespoons of flour and five tablespoons of water • add three tablespoons of butter, four tablespoons of sugar and a little salt • form the dough into a ball • roll out the dough with a rolling pin (illustration page 4) • press the dough up the sides of the tart tin • spread jam • place the fruit (tinned or fresh) over the jam (No. 195) • sweeten • bake in the oven for fifteen to twenty minutes.
 
 ---
 
 ## No. 197 — Tarte Adèle (Adèle's Tart)
 
 **French:**
-Préparer une pâte brisée ou sablée (N° 195 et 196) • mettre la pâte dans une tourtière beurrée (dessin page 7) • éplucher des pommes ou des poires coupées en quatre ou six morceaux • poser les morceaux de pommes sur la pâte • verser sur les pommes un mélange de deux œufs battus, quatre cuillères à soupe de sucre, six cuillères à soupe de crème • faire cuire au four quinze à vingt minutes.
+Préparer une pâte brisée (N° 195) ou sablée (N° 196) • mettre la pâte dans une tourtière beurrée (dessin page 7) • éplucher des pommes ou des poires coupées en quatre ou six morceaux • poser les morceaux de pommes sur la pâte • verser sur les pommes un mélange de deux œufs battus, quatre cuillères à soupe de sucre, six cuillères à soupe de crème • faire cuire au four quinze à vingt minutes.
 
 **English:**
-Prepare a shortcrust or sweet shortcrust pastry (No. 195 and 196) • place the pastry in a buttered tart tin (illustration page 7) • peel apples or pears and cut them into four or six pieces • place the apple pieces on the pastry • pour over the apples a mixture of two beaten eggs, four tablespoons of sugar and six tablespoons of cream • bake in the oven for fifteen to twenty minutes.
+Prepare a shortcrust (No. 195) or sweet shortcrust pastry (No. 196) • place the pastry in a buttered tart tin (illustration page 7) • peel apples or pears and cut them into four or six pieces • place the apple pieces on the pastry • pour over the apples a mixture of two beaten eggs, four tablespoons of sugar and six tablespoons of cream • bake in the oven for fifteen to twenty minutes.
 
 ---
 
