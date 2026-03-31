@@ -41,12 +41,12 @@ Soak the dried prunes for one hour • cut the rabbit into pieces • brown with
 ## No. 114 — Lapin Richelieu
 
 **French:**
-Utiliser seulement le derrière du lapin • le couper en quatre morceaux • rouler dans la farine • les faire dorer dans une poêle dans un peu de beurre chaud et de lard en morceaux • mettre dans un plat allant au four avec quatre carottes coupées en rondelles, deux tomates épluchées et coupées, thym, laurier (recouvert) • saler, poivrer • faire cuire au four chaud une heure • au moment de servir, préparer une sauce suprême avec un peu de jus du lapin (N° 2) • napper le lapin avec la sauce • servir chaud.
+Utiliser seulement le derrière du lapin • le couper en quatre morceaux • rouler dans la farine • les faire dorer dans une poêle dans un peu de beurre chaud et de lard en morceaux • mettre dans un plat allant au four avec quatre carottes coupées en rondelles, deux tomates épluchées et coupées, thym, laurier (recouvert) • saler, poivrer • faire cuire au four chaud une heure • au moment de servir, préparer une sauce suprême avec un peu de jus du lapin (N° 7) • napper le lapin avec la sauce • servir chaud.
 
 *Illustrations: 1/ couper le derrière du lapin en quatre morceaux. 2/ rouler les morceaux dans la farine. 3/ faire dorer dans du beurre et du lard chauds. 4/ faire cuire au four avec quatre carottes et deux tomates coupées, deux verres de vin blanc, trois verres d'eau. 5/ préparer une sauce suprême. 6/ napper avec la sauce au moment de servir.*
 
 **English:**
-Use only the hind part of the rabbit • cut it into four pieces • roll in flour • brown in a frying pan with a little hot butter and pieces of bacon • place in an ovenproof dish with four sliced carrots, two peeled and chopped tomatoes, thyme, bay leaf (covered) • salt and pepper • bake in a hot oven for one hour • when serving, prepare a sauce suprême with a little of the rabbit's cooking juices (No. 2) • coat the rabbit with the sauce • serve hot.
+Use only the hind part of the rabbit • cut it into four pieces • roll in flour • brown in a frying pan with a little hot butter and pieces of bacon • place in an ovenproof dish with four sliced carrots, two peeled and chopped tomatoes, thyme, bay leaf (covered) • salt and pepper • bake in a hot oven for one hour • when serving, prepare a sauce suprême with a little of the rabbit's cooking juices (No. 7) • coat the rabbit with the sauce • serve hot.
 
 ---
 
@@ -129,10 +129,10 @@ Salt and pepper the chicken • tie it with slices of bacon (attach the bacon wi
 ## No. 122 — Poulet sauce suprême (Chicken with Suprême Sauce)
 
 **French:**
-Couper le poulet en morceaux • mettre les morceaux à dorer dans une cocotte avec quatre ou cinq cuillères à soupe d'huile chaude • saler, poivrer • laisser mijoter environ trente à quarante minutes • préparer une sauce suprême (N° 2) • au moment de servir, napper le poulet avec la sauce mélangée au jus du poulet.
+Couper le poulet en morceaux • mettre les morceaux à dorer dans une cocotte avec quatre ou cinq cuillères à soupe d'huile chaude • saler, poivrer • laisser mijoter environ trente à quarante minutes • préparer une sauce suprême (N° 7) • au moment de servir, napper le poulet avec la sauce mélangée au jus du poulet.
 
 **English:**
-Cut the chicken into pieces • brown the pieces in a casserole with four or five tablespoons of hot oil • salt and pepper • simmer for approximately thirty to forty minutes • prepare a suprême sauce (No. 2) • when serving, coat the chicken with the sauce mixed with the chicken's cooking juices.
+Cut the chicken into pieces • brown the pieces in a casserole with four or five tablespoons of hot oil • salt and pepper • simmer for approximately thirty to forty minutes • prepare a suprême sauce (No. 7) • when serving, coat the chicken with the sauce mixed with the chicken's cooking juices.
 
 ---
 
