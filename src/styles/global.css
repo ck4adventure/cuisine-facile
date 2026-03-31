@@ -16,7 +16,7 @@
   --page-pad:         24px;
   --page-pad-mobile:  16px;
   --recipe-max-width: 680px;
-  --sidebar-width:    280px;
+  --sidebar-width:    320px;
   --card-radius:      8px;
   --btn-radius:       4px;
 
@@ -535,6 +535,12 @@ a.recipe-ref:hover { text-decoration: none; opacity: 0.8; }
   font-size: 0.82rem;
   line-height: 1.65;
   color: var(--text-secondary);
+}
+
+.ref-card__block + .ref-card__block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 0.5px solid var(--border);
 }
 
 /* Inline ref expansion (mobile) */

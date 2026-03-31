@@ -57,6 +57,7 @@ const enSteps = renderSteps(recipe.bodyEn, 'en');
   // ── Reference panel / inline expansion ──
   const isMobile = () => window.innerWidth < 768;
 
+
   document.querySelectorAll<HTMLAnchorElement>('a.recipe-ref').forEach((link) => {
     link.addEventListener('click', (e) => {
       const raw = link.dataset.recipe;
@@ -90,18 +91,19 @@ const enSteps = renderSteps(recipe.bodyEn, 'en');
     const card  = panel.querySelector<HTMLElement>('.ref-card');
     if (!empty || !card) return;
 
-    const lang  = document.documentElement.dataset.lang ?? 'both';
-    const title = lang === 'en' ? recipe.titleEn : recipe.titleFr;
-    const body  = lang === 'en' ? recipe.bodyEn  : recipe.bodyFr;
+    const numEl = card.querySelector('.ref-card__num');
+    if (numEl) numEl.textContent = `N° ${recipe.numDisplay}`;
 
-    const numEl   = card.querySelector('.ref-card__num');
-    const titleEl = card.querySelector('.ref-card__title');
-    const bodyEl  = card.querySelector('.ref-card__body');
-    if (!numEl || !titleEl || !bodyEl) return;
-
-    numEl.textContent   = `N° ${recipe.numDisplay}`;
-    titleEl.textContent = title;
-    bodyEl.replaceChildren(buildStepSpans(body));
+    const frBlock = card.querySelector('.ref-card__block.lang-fr');
+    const enBlock = card.querySelector('.ref-card__block.lang-en');
+    if (frBlock) {
+      frBlock.querySelector('.ref-card__title')!.textContent = recipe.titleFr;
+      frBlock.querySelector('.ref-card__body')!.replaceChildren(buildStepSpans(recipe.bodyFr));
+    }
+    if (enBlock) {
+      enBlock.querySelector('.ref-card__title')!.textContent = recipe.titleEn;
+      enBlock.querySelector('.ref-card__body')!.replaceChildren(buildStepSpans(recipe.bodyEn));
+    }
 
     empty.style.display = 'none';
     card.classList.add('visible');
