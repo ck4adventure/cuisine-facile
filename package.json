@@ -10,10 +10,11 @@
     "check-data": "npx tsx src/lib/check-data.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "astro": "^4.16.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
-    "tsx": "^4.19.0"
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
   }
 }

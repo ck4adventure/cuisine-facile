@@ -1,6 +1,7 @@
 ---
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro'
 
 interface Props {
   title: string;
@@ -26,9 +27,11 @@ const { title, backUrl, backLabel } = Astro.props;
         document.documentElement.dataset.lang  = l;
       })();
     </script>
+		<Analytics />
   </head>
   <body>
     <SiteHeader backUrl={backUrl} backLabel={backLabel} />
     <slot />
   </body>
+	
 </html>
