@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecipeNav from '../../components/RecipeNav.astro';
 import { sections } from '../../lib/sections';
-import { getRecipeData } from '../../lib/recipes';
+import { getRecipeData, getSortedRecipes } from '../../lib/recipes';
 import { resolveRecipeUrl } from '../../lib/links';
 import type { Recipe } from '../../lib/recipes';
 
@@ -33,6 +34,26 @@ for (const recipe of recipes) {
 if (currentGroup.items.length > 0) groups.push(currentGroup);
 
 const [rangeStart, rangeEnd] = sectionMeta.recipeRange ?? [0, 0];
+
+// Book navigation: prev/next in the sections sequence
+const sectionIndex = sections.findIndex((s) => s.slug === sectionSlug);
+const prevSection = sections[sectionIndex - 1] ?? null;
+const nextSection = sections[sectionIndex + 1] ?? null;
+
+const prevLink = prevSection
+  ? { href: `/${prevSection.slug}`, titleFr: prevSection.titleFr, titleEn: prevSection.titleEn }
+  : { href: '/', titleFr: 'Cuisine Facile', titleEn: 'Easy Cooking in Easy French' };
+
+let nextLink: { href: string; titleFr: string; titleEn?: string; num?: string } | null;
+if (nextSection) {
+  nextLink = { href: `/${nextSection.slug}`, titleFr: nextSection.titleFr, titleEn: nextSection.titleEn };
+} else {
+  // Last section → first recipe
+  const firstRecipe = getSortedRecipes(recipeMap)[0] ?? null;
+  nextLink = firstRecipe
+    ? { href: `/${firstRecipe.section}/${firstRecipe.slug}`, titleFr: firstRecipe.titleFr, titleEn: firstRecipe.titleEn, num: `N° ${firstRecipe.num}` }
+    : null;
+}
 ---
 
 <BaseLayout
@@ -89,5 +110,9 @@ const [rangeStart, rangeEnd] = sectionMeta.recipeRange ?? [0, 0];
         </>
       ))}
     </ol>
+
+    <div style="padding: 32px 0;">
+      <RecipeNav prev={prevLink} next={nextLink} />
+    </div>
   </main>
 </BaseLayout>

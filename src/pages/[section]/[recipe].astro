@@ -4,7 +4,8 @@ import RecipeView from '../../components/RecipeView.astro';
 import RefPanel from '../../components/RefPanel.astro';
 import RecipeNav from '../../components/RecipeNav.astro';
 import { sections } from '../../lib/sections';
-import { getRecipeData, getAdjacentRecipes } from '../../lib/recipes';
+import { getRecipeData, getAdjacentRecipes, getSortedRecipes } from '../../lib/recipes';
+import type { NavLink } from '../../lib/nav';
 
 export async function getStaticPaths() {
   const { sectionRecipes } = getRecipeData();
@@ -29,6 +30,25 @@ const recipe = recipeMap.get(recipeNum)!;
 const sectionMeta = sections.find((s) => s.slug === sectionSlug)!;
 const { prev, next } = getAdjacentRecipes(recipeNum, recipeMap);
 
+const sorted = getSortedRecipes(recipeMap);
+const isFirstRecipe = recipe.num === sorted[0]?.num;
+const isLastRecipe  = recipe.num === sorted[sorted.length - 1]?.num;
+
+// Book-nav: first recipe goes back to last section; last recipe returns to sections overview
+const lastRecipeSection = sections.filter((s) => s.recipeRange !== null).at(-1)!;
+
+const prevLink: NavLink = isFirstRecipe
+  ? { href: `/${lastRecipeSection.slug}`, titleFr: lastRecipeSection.titleFr, titleEn: lastRecipeSection.titleEn }
+  : prev
+    ? { href: `/${prev.section}/${prev.slug}`, titleFr: prev.titleFr, titleEn: prev.titleEn, num: `N° ${prev.num}` }
+    : null;
+
+const nextLink: NavLink = isLastRecipe
+  ? { href: '/', dirLabel: 'Return to Sections →', titleFr: 'Toutes les sections', titleEn: 'All Sections' }
+  : next
+    ? { href: `/${next.section}/${next.slug}`, titleFr: next.titleFr, titleEn: next.titleEn, num: `N° ${next.num}` }
+    : null;
+
 const pageTitle = `N° ${recipe.numDisplay} · ${recipe.titleFr}`;
 ---
 
@@ -44,7 +64,7 @@ const pageTitle = `N° ${recipe.numDisplay} · ${recipe.titleFr}`;
       </nav>
 
       <RecipeView recipe={recipe} recipeMap={recipeMap} />
-      <RecipeNav prev={prev} next={next} />
+      <RecipeNav prev={prevLink} next={nextLink} />
     </div>
 
     <RefPanel />

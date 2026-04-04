@@ -1,8 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RecipeNav from '../components/RecipeNav.astro';
+import { sections } from '../lib/sections';
 import { getVocabData } from '../lib/vocabulaire';
 
 const { equipment, terms } = getVocabData();
+
+// Book navigation: prev = Home, next = first recipe section (sauces)
+const firstRecipeSection = sections.find((s) => s.recipeRange !== null)!;
+const prevLink = { href: '/', titleFr: 'Cuisine Facile', titleEn: 'Easy Cooking in Easy French' };
+const nextLink = { href: `/${firstRecipeSection.slug}`, titleFr: firstRecipeSection.titleFr, titleEn: firstRecipeSection.titleEn };
 ---
 
 <BaseLayout title="Le Vocabulaire de la Cuisine" backUrl="/" backLabel="Home">
@@ -72,5 +79,9 @@ const { equipment, terms } = getVocabData();
         </tbody>
       </table>
     </section>
+
+    <div style="padding: 32px 0;">
+      <RecipeNav prev={prevLink} next={nextLink} />
+    </div>
   </main>
 </BaseLayout>

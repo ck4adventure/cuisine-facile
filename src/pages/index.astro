@@ -2,11 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RecipeNav from '../components/RecipeNav.astro';
 import { sections } from '../lib/sections';
-import { getRecipeData, getSortedRecipes } from '../lib/recipes';
+import { getRecipeData } from '../lib/recipes';
 
 const { recipeMap, sectionRecipes } = getRecipeData();
-const sorted = getSortedRecipes(recipeMap);
-const firstRecipe = sorted[0] ?? null;
 
 // Sections to show in the grid (exclude vocabulaire from recipe count display)
 const recipeSections = sections.filter((s) => s.recipeRange !== null);
@@ -58,10 +56,11 @@ function sectionRecipeCount(slug: string): number {
     </div>
 
     <!-- Book-style browse navigation -->
-    {firstRecipe && (
-      <div style="padding: 32px 0;">
-        <RecipeNav prev={null} next={firstRecipe} />
-      </div>
-    )}
+    <div style="padding: 32px 0;">
+      <RecipeNav
+        prev={null}
+        next={{ href: '/vocabulaire', titleFr: vocabSection.titleFr, titleEn: vocabSection.titleEn }}
+      />
+    </div>
   </main>
 </BaseLayout>
